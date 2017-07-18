@@ -36,8 +36,9 @@
 	import './editor.stylus';
 	import {selectOptions, ueConfig} from '../../config/config';
 	import '../../config/ueditor.config';
-	import '../../static/ueditor.all.min';
-	import '../../static/lang/zh-cn/zh-cn';
+	import '../../../static/ueditor.all.min';
+	import '../../../static/lang/zh-cn/zh-cn';
+
 	export default {
 		name: 'weui-ueditor',
 		components: {weuiToolbar},
