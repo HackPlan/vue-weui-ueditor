@@ -44,7 +44,7 @@
                 .weui_edui_icon
                   display: inline-block
                   vertical-align: middle
-                  background-image: url(/ueditor-themes/default/images/ueditor.png)
+                  background-image: url(/ueditor-static/themes/default/images/ueditor_z29f4d5.png)
                   background-repeat: no-repeat
                   width: 20px
                   height: 20px
@@ -100,7 +100,7 @@
                       cursor: pointer
 
                     .clear
-                      background: url(/ueditor-themes/default/images/ueditor.png) 0 -1070px no-repeat
+                      background: url(/ueditor-static/themes/default/images/ueditor_z29f4d5.png) 0 -1070px no-repeat
                       background-color: transparent
                       border: none
                   .input_color
@@ -147,7 +147,7 @@
 
                 /* toolselect */
                 .weui_edui_toolselect_list
-                  background: url(/ueditor-themes/default/images/sparator.png) repeat-y 25px #fff
+                  background: url(/ueditor-static/themes/default/images/sparator.png) repeat-y 25px #fff
                   ul
                     margin: 0
                     padding: 0 2px
@@ -173,7 +173,7 @@
                         position: absolute
                         left: 0
                         top: 2px
-                        background: url(/ueditor-themes/default/images/icons-all.gif) no-repeat 6px -205px
+                        background: url(/ueditor-static/themes/default/images/icons-all29f4d4.gif) no-repeat 6px -205px
 
                 /* toolinput */
                 &.toolinput

@@ -34,14 +34,14 @@
 <script type="text/ecmascript-6">
 	import weuiToolbar from '../Toolbar';
 	import './editor.stylus';
-	import {selectOptions, ueConfig} from '../../config/config';
+	import { selectOptions, ueConfig } from '../../config/config';
 	import '../../config/ueditor.config';
 	import '../../../static/ueditor.all.min';
 	import '../../../static/lang/zh-cn/zh-cn';
 
 	export default {
 		name: 'weui-ueditor',
-		components: {weuiToolbar},
+		components: { weuiToolbar },
 		props: {
 			content: {
 				type: String,
@@ -61,7 +61,10 @@
 		computed: {
 			selectOptions() {
 				return Object.assign({}, selectOptions, this.config.selectOptions);
-			}
+			},
+      ueConfig() {
+        return Object.assign({}, ueConfig, this.config.ueditor);
+      }
 		},
 		data() {
 			return {
@@ -201,7 +204,7 @@
 			this.toolbar = this.$refs.toolbar;
 			this.$nextTick(() => {
 				this.$refs.editor.id = this.id;
-				this.editor = this.UE.getEditor(this.id, ueConfig);
+				this.editor = this.UE.getEditor(this.id, this.ueConfig);
 				this.editor.ready(() => {
 					this.init();
 					this.onContentChange();

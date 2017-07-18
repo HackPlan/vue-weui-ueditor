@@ -19,12 +19,12 @@
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
-    var URL = window.UEDITOR_HOME_URL || '//unpkg.com/vue-weui-ueditor/static/';
+    var URL = window.UEDITOR_HOME_URL || '/ueditor-static/';
 
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */
-    window.UEDITOR_CONFIG = {
+    window.UEDITOR_CONFIG = (window.UEDITOR_CONFIG || {
 
         //为编辑器实例添加一个路径，这个不能被注释
         UEDITOR_HOME_URL: URL
@@ -329,7 +329,7 @@
         //sourceEditor
         //源码的查看方式,codemirror 是代码高亮，textarea是文本框,默认是codemirror
         //注意默认codemirror只能在ie8+和非ie中使用
-        //,sourceEditor:"codemirror"
+        ,sourceEditor:"textarea"
         //如果sourceEditor是codemirror，还用配置一下两个参数
         //codeMirrorJsUrl js加载的路径，默认是 URL + "third-party/codemirror/codemirror.js"
         //,codeMirrorJsUrl:URL + "third-party/codemirror/codemirror.js"
@@ -427,7 +427,7 @@
 			ul:     ['class', 'style'],
 			video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style']
 		}
-    };
+    });
 
     function getUEBasePath(docUrl, confUrl) {
 
