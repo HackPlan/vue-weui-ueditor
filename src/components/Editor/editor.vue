@@ -127,8 +127,14 @@
 				const H = document.body.scrollTop;
 				const toolbarboxWrapCss = getComputedStyle(this.toolbar.parentNode, false);
 				const toolbarCss = getComputedStyle(this.toolbar, false);
+
+        const elemCss = getComputedStyle(this.$el, false);
+        const elemHeight = parseInt(elemCss.height, 10)
+        const toolbarHeight = parseInt(toolbarboxWrapCss.height, 10)
+        const fixedToolbarStopScrollTop = this.fixedToolbarScrollTop + (elemHeight - toolbarHeight)
+
 				try {
-					if (H > this.fixedToolbarScrollTop) {
+					if (H > this.fixedToolbarScrollTop && H < fixedToolbarStopScrollTop) {
 						this.toolbar.style.cssText = `top:${this.fixedToolbarOffset}px;position:fixed;width:${toolbarboxWrapCss.width}`;
 						this.toolbar.parentNode.style.cssText = `height:${toolbarCss.height}`;
 					} else {
