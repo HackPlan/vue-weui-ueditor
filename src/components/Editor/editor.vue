@@ -53,7 +53,11 @@
 					return {};
 				}
 			},
-			editorTopOffset: {
+      fixedToolbarScrollTop: {
+				type: Number,
+				default: 0
+      },
+			fixedToolbarOffset: {
 				type: Number,
 				default: 0
 			}
@@ -124,8 +128,8 @@
 				const toolbarboxWrapCss = getComputedStyle(this.toolbar.parentNode, false);
 				const toolbarCss = getComputedStyle(this.toolbar, false);
 				try {
-					if (H > this.editorTopOffset) {
-						this.toolbar.style.cssText = `top:${this.editorTopOffset}px;position:fixed;width:${toolbarboxWrapCss.width}`;
+					if (H > this.fixedToolbarScrollTop) {
+						this.toolbar.style.cssText = `top:${this.fixedToolbarOffset}px;position:fixed;width:${toolbarboxWrapCss.width}`;
 						this.toolbar.parentNode.style.cssText = `height:${toolbarCss.height}`;
 					} else {
 						this.toolbar.style.cssText = this.toolbar.parentNode.style.cssText = '';
