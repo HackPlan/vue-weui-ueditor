@@ -167,6 +167,7 @@
 			onContentChange() {
 				this.editor.addListener('contentChange', function() {
 					this._content = this.editor.getContent();
+          this.$emit('contentChange');
 				}.bind(this));
 			},
 			/**
