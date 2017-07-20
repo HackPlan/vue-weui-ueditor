@@ -199,15 +199,6 @@
 					}
 				}.bind(this));
 			},
-			bindScrollEvent() {
-				if (window.addEventListener) {
-					window.addEventListener('scroll', this.onScroll, false);
-				} else if (window.attachEvent) {
-					window.attachEvent('scroll', this.onScroll);
-				} else {
-					window['onscroll'] = this.onScroll;
-				}
-			},
 			onFocus() {
 				this.editor.addListener('focus', function() {
 					this.toolbarMaskVisible = !1;
@@ -231,9 +222,12 @@
 					this.onContentChange();
 					this.onSelectionChange();
 					this.onFocus();
-					this.bindScrollEvent();
+				  window.addEventListener('scroll', this.onScroll, false);
 				});
 			});
 		}
+    beforeDestroy() {
+			window.removeEventListener('scroll', this.onScroll, false);
+    },
 	};
 </script>
