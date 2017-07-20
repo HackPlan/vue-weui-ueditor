@@ -226,7 +226,7 @@
 				  window.addEventListener('scroll', this.onScroll, false);
 				});
 			});
-		}
+		},
     beforeDestroy() {
 			window.removeEventListener('scroll', this.onScroll, false);
     },
