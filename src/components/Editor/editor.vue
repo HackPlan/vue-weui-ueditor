@@ -123,7 +123,7 @@
 			execCommand(name, value, dir) {
 				this.editor.execCommand(name, value, dir);
 			},
-			onScroll() {
+			onScroll: function onScroll() {
 				const H = document.body.scrollTop;
 				const toolbarboxWrapCss = getComputedStyle(this.toolbar.parentNode, false);
 				const toolbarCss = getComputedStyle(this.toolbar, false);
@@ -135,11 +135,22 @@
 
 				try {
 					if (H > this.fixedToolbarScrollTop && H < fixedToolbarStopScrollTop) {
-						this.toolbar.style.cssText = `top:${this.fixedToolbarOffset}px;position:fixed;width:${toolbarboxWrapCss.width}`;
-						this.toolbar.parentNode.style.cssText = `height:${toolbarCss.height}`;
-					} else {
-						this.toolbar.style.cssText = this.toolbar.parentNode.style.cssText = '';
-					}
+            if (!this.toolbar.style.cssText) {
+						  this.toolbar.style.cssText = `top:${this.fixedToolbarOffset}px;position:fixed;width:${toolbarboxWrapCss.width}`;
+						  this.toolbar.parentNode.style.cssText = `height:${toolbarCss.height}`;
+              // 不知道为什么有时页面加载成功后会误判定进这里，所以干脆在一秒后重新检查一次
+              setTimeout(onScroll.bind(this), 1000)
+            }
+					} else if (H < this.fixedToolbarScrollTop) {
+						if (this.toolbar.style.cssText) this.toolbar.style.cssText = '';
+            if (this.toolbar.parentNode.style.cssText) this.toolbar.parentNode.style.cssText = '';
+					} else if (H > fixedToolbarStopScrollTop) {
+            // 从下向上滚动时，如果 wrap 和 toolbar 的 cssText 都是被清空的
+            // 滚动到 fixedToolbarStopScrollTop 时页面会跳动一下，再次滚动到
+            // fixedToolbarStopScrollTop 之下。如果一直比较缓慢地向上滚动，
+            // 那么页面会一直跳动，导致永远无法滚动到页面顶部
+						if (this.toolbar.style.cssText) this.toolbar.style.cssText = '';
+          }
 				} catch (e) {
 					console.warn(e);
 				}
