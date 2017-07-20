@@ -52,6 +52,9 @@
           return {};
         }
       },
+      scrollElement: {
+        type: String,
+      },
       fixedToolbarScrollTop: {
         type: Number,
         default: 0
@@ -123,7 +126,8 @@
         this.editor.execCommand(name, value, dir);
       },
       onScroll: function onScroll() {
-        const H = document.body.scrollTop;
+        const scrollElem = document.querySelector(this.scrollElement) || document.body;
+        const H = scrollElem.scrollTop;
         const toolbarboxWrapCss = getComputedStyle(this.toolbar.parentNode, false);
         const toolbarCss = getComputedStyle(this.toolbar, false);
 
@@ -222,12 +226,15 @@
           this.onContentChange();
           this.onSelectionChange();
           this.onFocus();
-          window.addEventListener('scroll', this.onScroll, false);
+
+          const scrollElem = document.querySelector(this.scrollElement) || window;
+          scrollElem.addEventListener('scroll', this.onScroll, false);
         });
       });
     },
     beforeDestroy() {
-      window.removeEventListener('scroll', this.onScroll, false);
+      const scrollElem = document.querySelector(this.scrollElement) || window;
+      scrollElem.removeEventListener('scroll', this.onScroll, false);
     },
   };
 </script>
