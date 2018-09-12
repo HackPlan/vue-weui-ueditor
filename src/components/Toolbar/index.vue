@@ -48,7 +48,7 @@
 			</div>
 			<div class="weui__box_shadow" v-show="maskVisible"></div>
 		</div>
-	</div>	
+	</div>
 </template>
 <script type="text/ecmascript-6">
 	import clickoutside from '../../utils/clickoutside';
@@ -106,6 +106,18 @@
 						}, {
 							name: 'formatmatch',
 							title: '格式刷',
+							type: 'toolbtn',
+							status: ''
+						}, {
+							type: 'separator'
+						}, {
+							name: 'link',
+							title: '超链接',
+							type: 'toolbtn',
+							status: ''
+						}, {
+							name: 'unlink',
+							title: '断开链接',
 							type: 'toolbtn',
 							status: ''
 						}
@@ -237,6 +249,13 @@
 				this.$emit('on-maskvisible-change', !0);
 			},
 			handleButtonClick(name, value, dir) {
+        if (name === 'link') {
+          const link = prompt('请输入链接地址')
+          value = {
+            url: link,
+            target: '_blank'
+          }
+        }
 				this.$emit('on-editor-execCommand', name, value, dir);
 			}
 		},
