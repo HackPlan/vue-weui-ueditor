@@ -252,7 +252,7 @@
         if (name === 'link') {
           const link = prompt('请输入链接地址')
           value = {
-            url: link,
+            href: link,
             target: '_blank'
           }
         }
